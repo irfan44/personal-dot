@@ -12,23 +12,22 @@ local themes_path = gfs.get_themes_dir()
 local theme = {}
 
 theme.font          = "SF Pro Display Regular 8"
-theme.taglist_font  = "DejaVuSansMono NF Book 13"
-theme.bg_normal     = "#1e1f29"
-theme.bg_focus      = "#1e1f29"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "##1e1f29"
+theme.bg_normal     = "#2e3440"
+theme.bg_focus      = "#2e3440"
+theme.bg_urgent     = "#88c0d0"
+theme.bg_minimize   = "#2e3440"
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
+theme.fg_normal     = "#d8dee9"
+theme.fg_focus      = "#f9f9f9"
+theme.fg_urgent     = "#f9f9f9"
 theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = dpi(4)
 theme.border_width  = dpi(0)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+theme.border_normal = "#7b99b7"
+theme.border_focus  = "#7b99b7"
+theme.border_marked = "#4c566a"
 
 theme.calendar_month_padding = 8
 theme.calendar_header_padding = 4
@@ -49,11 +48,14 @@ theme.calendar_header_padding = 4
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
+    taglist_square_size, theme.fg_focus
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
+theme.taglist_bg_focus = "#7b99b7"
+theme.taglist_fg_focus = "#f9f9f9"
+
 
 -- Variables set for theming notifications:
 -- notification_font
