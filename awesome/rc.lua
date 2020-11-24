@@ -54,7 +54,7 @@ beautiful.init("/home/irfannm/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
-editor = os.getenv("EDITOR") or "editor"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -68,7 +68,7 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
     awful.layout.suit.fair,
@@ -244,6 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
             mytextclock,
             padding,
             s.mylayoutbox,
+            padding,
         },
     }
 end)
@@ -464,6 +465,28 @@ globalkeys = gears.table.join(
         volume_widget.toggle,
         {description = 'toggle mute', group = 'awesome'}
     ),
+    
+    -- Screenshot
+    awful.key(
+    	{},
+    	"Print",
+    	function () awful.spawn.with_shell("gnome-screenshot") end,
+        {description = "screenshot", group = "screen"}
+    ),
+    
+    awful.key(
+    	{"Shift"},
+    	"Print",
+    	function () awful.spawn.with_shell("gnome-screenshot -a") end,
+        {description = "select screenshot", group = "screen"}
+    ),
+
+    awful.key(
+    	{"Control"},
+	"Print",
+	function () awful.spawn.with_shell("gnome-screenshot -w") end,
+	{description = "window screenshot", group = "screen"}
+    ),
 
     awful.key({ modkey }, "x",
               function ()
@@ -682,7 +705,7 @@ awful.rules.rules = {
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
       and not c.size_hints.user_position
@@ -743,5 +766,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autostart
 awful.spawn.with_shell("feh --bg-scale ~/Pictures/Wallpapers/nordic-mountain.jpg")
 awful.spawn.with_shell("picom &")
-awful.spawn.with_shell("dunst &")
+
 -- }}}
